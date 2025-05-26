@@ -2,8 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    // extend: {
-    //   colors: {
+    extend: {
+      screens: {
+        xs:"375px"
+    }
+      //   colors: {
     //     gray: {
     //       100: "#8899a6",
     //       200: "#38444d",
@@ -14,7 +17,7 @@ export default {
     //       200: "#000010",
     //     },
     //   },
-    // },
+    },
   },
   plugins: [],
 };

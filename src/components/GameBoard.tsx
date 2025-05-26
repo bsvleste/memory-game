@@ -1,4 +1,7 @@
+import { motion } from "motion/react";
+
 import { Card } from "./Card";
+import { ANIMATIONS } from "@/constants";
 
 const EMOJIS = ["😀", "🧁", "🤡", "🍭", "🍨", "🍹"] as const;
 const CARDS = [...EMOJIS, ...EMOJIS]
@@ -11,10 +14,13 @@ const CARDS = [...EMOJIS, ...EMOJIS]
   }));
 export function GameBoard() {
   return (
-    <div className="grid grid-cols-4 gap-2 rounded-xl bg-zinc-800 p-2">
+    <motion.div
+      {...ANIMATIONS.fadeInUp}
+      className="grid grid-cols-4 gap-2 rounded-xl bg-zinc-800 p-2"
+    >
       {CARDS.map((card) => (
         <Card key={card.id} {...card} />
       ))}
-    </div>
+    </motion.div>
   );
 }

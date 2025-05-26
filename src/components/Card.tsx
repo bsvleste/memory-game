@@ -5,7 +5,7 @@ import { useState } from "react";
 const CARD_STYLE = {
   base: "backface-hidden absolute flex h-full w-full items-center justify-center rounded-2xl border-2",
   back: " bg-pink-600   border-white/20",
-  front: " rotate-y-180 border-pink-500/50 bg-zinc-200",
+  front: " rotate-y-180 border-pink-500/50 bg-zinc-200 text-4xl ",
 };
 type CardProps = {
   emoji: string;
@@ -16,7 +16,10 @@ export function Card({ emoji }: CardProps) {
     setIsFlipped(!isFlipped);
   }
   return (
-    <div onClick={handleFlipCard} className="relative h-16 w-16 cursor-pointer">
+    <div
+      onClick={handleFlipCard}
+      className="relative h-16 w-16 cursor-pointer xs:h-20 xs:w-20 sm:h-24 sm:w-24"
+    >
       <div
         className={cn(
           "preserve-3d h-full w-full transition-transform duration-500",
@@ -24,7 +27,7 @@ export function Card({ emoji }: CardProps) {
         )}
       >
         <div className={cn(CARD_STYLE.base, CARD_STYLE.back)}>
-          <Sparkles className="h-6 w-6 text-zinc-100" />
+          <Sparkles className="h-8 w-8 animate-pulse text-zinc-100" />
         </div>
         <div className={cn(CARD_STYLE.base, CARD_STYLE.front)}>{emoji}</div>
       </div>
