@@ -1,25 +1,20 @@
 import { motion } from "motion/react";
-
 import { Card } from "./Card";
 import { ANIMATIONS } from "@/constants";
+import { CardProps } from "@/types";
+type GameboardProps = {
+  cards: CardProps[];
+  onCardClick: (id: number) => void;
+};
 
-const EMOJIS = ["😀", "🧁", "🤡", "🍭", "🍨", "🍹"] as const;
-const CARDS = [...EMOJIS, ...EMOJIS]
-  .sort(() => Math.random() - 0.5)
-  .map((emoji, index) => ({
-    id: index,
-    emoji,
-    isFlipped: false,
-    isMatched: false,
-  }));
-export function GameBoard() {
+export function GameBoard({ cards, onCardClick }: GameboardProps) {
   return (
     <motion.div
       {...ANIMATIONS.fadeInUp}
       className="grid grid-cols-4 gap-2 rounded-xl bg-zinc-800 p-2"
     >
-      {CARDS.map((card) => (
-        <Card key={card.id} {...card} />
+      {cards.map((card: CardProps) => (
+        <Card key={card.id} {...card} onClick={() => onCardClick(card.id)} />
       ))}
     </motion.div>
   );

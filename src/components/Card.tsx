@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { Sparkles } from "lucide-react";
-import { useState } from "react";
 
 const CARD_STYLE = {
   base: "backface-hidden absolute flex h-full w-full items-center justify-center rounded-2xl border-2",
@@ -9,15 +8,14 @@ const CARD_STYLE = {
 };
 type CardProps = {
   emoji: string;
+  onClick: () => void;
+  isFlipped: boolean;
+  isMatched: boolean;
 };
-export function Card({ emoji }: CardProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
-  function handleFlipCard() {
-    setIsFlipped(!isFlipped);
-  }
+export function Card({ emoji, onClick, isFlipped, isMatched }: CardProps) {
   return (
     <div
-      onClick={handleFlipCard}
+      onClick={onClick}
       className="relative h-16 w-16 cursor-pointer xs:h-20 xs:w-20 sm:h-24 sm:w-24"
     >
       <div
@@ -29,7 +27,15 @@ export function Card({ emoji }: CardProps) {
         <div className={cn(CARD_STYLE.base, CARD_STYLE.back)}>
           <Sparkles className="h-8 w-8 animate-pulse text-zinc-100" />
         </div>
-        <div className={cn(CARD_STYLE.base, CARD_STYLE.front)}>{emoji}</div>
+        <div
+          className={cn(
+            CARD_STYLE.base,
+            CARD_STYLE.front,
+            isMatched && "cursor-default border-zinc-100 bg-transparent",
+          )}
+        >
+          {emoji}
+        </div>
       </div>
     </div>
   );
