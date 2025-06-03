@@ -1,4 +1,5 @@
 import { ANIMATIONS } from "@/constants";
+import { formatTime } from "@/lib/formatTime";
 import { motion } from "motion/react";
 
 type GameModalProps = {
@@ -19,7 +20,7 @@ export function GameModal({ moves, time, onRestart }: GameModalProps) {
         </h2>
         <p className="mb-6 text-lg">
           You completed the game in <br />
-          <b>{moves} moves</b> and <b>{time}</b>!
+          <b>{moves} moves</b> and <b>{formatTime(time)}</b>!
         </p>
         <button
           onClick={onRestart}

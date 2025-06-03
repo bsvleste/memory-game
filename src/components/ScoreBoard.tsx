@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { MousePointerClick, Clock, RotateCcw, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ANIMATIONS } from "@/constants";
+import { formatTime } from "@/lib/formatTime";
 
 type ScoreBoardProps = {
   moves: number;
@@ -49,13 +50,13 @@ export function ScoreBoard({ moves, time, onRestart }: ScoreBoardProps) {
           icon={icon}
           label={label}
           color={color}
-          value={label === "Time" ? time : moves}
+          value={label === "Time" ? formatTime(time) : moves}
         />
       ))}
 
       <button
         onClick={onRestart}
-        className="hover:text-pink group flex items-center gap-2 px-2 text-base text-white"
+        className="group flex items-center gap-2 px-2 text-base text-white hover:text-pink-500"
       >
         <RotateCcw className="h-4 w-4 transition-transform duration-500 group-hover:-rotate-180" />
         Restart
